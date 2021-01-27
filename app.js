@@ -1,18 +1,18 @@
 var express = require('express');
-var router = express.Router();
 var db = require('./db');
-
-// var userRoutes
-
+var app = express();
 
 // -- Querying Database
 var sql = 'SELECT student_name, score FROM student order by score desc';
-db.query(sql,  function(err, rows) {
-  if (err) throw err;
-  console.log('Data received from Database: ');
-  console.log(rows);
+db.query(sql, function (err, rows) {
 
+    if (err) throw err;
+    console.log('Data received from Database: ');
+    console.log(rows);
+    app.get("/student", (req, res) => {
+	return res.json({rows});
+    });
 }); 
 
-module.exports = router;
+app.listen(process.env.PORT || 3000);
 db.end();
