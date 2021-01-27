@@ -12,7 +12,7 @@ var app = express();
 // app.listen(8080, function () {
 //     console.log('listening on port 8080');
 // });
-db.createQuery('SELECT * FROM student', (err, rows) => {
+db.query('SELECT * FROM student', (err, rows) => {
   if(err) throw err;
   console.log('Data received from Database: ');
   console.log(rows);
