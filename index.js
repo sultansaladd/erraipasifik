@@ -12,11 +12,7 @@ var app = express();
 // app.listen(8080, function () {
 //     console.log('listening on port 8080');
 // });
-db.query('SELECT * FROM student', (err, rows) => {
-  if(err) throw err;
-  console.log('Data received from Database: ');
-  console.log(rows);
-}); 
+
 
 // ---- Connection to DB
 var db = mysql.createConnection({
@@ -31,6 +27,13 @@ db.connect((err) => {
   if (err) throw err;
   console.log('Connected!');
 });
+
+db.query('SELECT * FROM student', function(err, rows) {
+  if(err) throw err;
+  console.log('Data received from Database: ');
+  console.log(rows);
+}); 
+
 db.end();
 
 // --Query
