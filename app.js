@@ -28,10 +28,13 @@ db.connect((err) => {
   console.log('Connected!');
 });
 
-db.query('SELECT * FROM student', function(err, rows) {
-  if(err) throw err;
+// -- Querying Database
+var sql = 'SELECT student_name, score FROM student order by score desc';
+db.query(sql,  function(err, rows) {
+  if (err) throw err;
   console.log('Data received from Database: ');
   console.log(rows);
+
 }); 
 
 db.end();
