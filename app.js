@@ -1,32 +1,9 @@
-var mysql = require('mysql');
 var express = require('express');
-var app = express();
+var router = express.Router();
+var db = require('./db');
 
+// var userRoutes
 
-// app.get('/', function (request, response) {
-//     fetchData(response);
-//     console.log('Done. Displayed Data!');
-// });
-
-
-// app.listen(8080, function () {
-//     console.log('listening on port 8080');
-// });
-
-
-// ---- Connection to DB
-var db = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-    password: '',
-    database: 'usersdb',
-  port : 3306
-});
- 
-db.connect((err) => {
-  if (err) throw err;
-  console.log('Connected!');
-});
 
 // -- Querying Database
 var sql = 'SELECT student_name, score FROM student order by score desc';
@@ -37,6 +14,5 @@ db.query(sql,  function(err, rows) {
 
 }); 
 
+module.exports = router;
 db.end();
-
-// --Query
